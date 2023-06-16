@@ -1,0 +1,31 @@
+import { z } from "zod";
+
+export const registerSchema = z
+  .object({
+    name: z
+      .string()
+      .nonempty("O nome é obrigatório.")
+      .min(2, "O nome precisa conter pelo menos 2 caracteres."),
+    password: z
+      .string()
+      .nonempty()
+      .min(8, "A senha deve ter no mínimo 8 caracteres")
+      .regex(/^(?=.*[a-zA-Z]).+$/, "A senha deve conter letras")
+      .regex(/^(?=.*\d).+$/, "A senha deve contem números")
+      .regex(
+        /^(?=.*\d).+$/,
+        "A senha deve conter pelo menos um caractere especial"
+      ),
+    confirm: z.string(),
+    course_module: z.string().nonempty("Selecione uma opção"),
+    email: z.string().nonempty().email("O e-mail fornecido é inválido"),
+    bio: z
+      .string()
+      .nonempty("A bio é obrigatória")
+      .min(10, "A mensagem precisa conter pelo menos 10 caracteres."),
+    contact: z.string().nonempty("Insira um contato válido"),
+  })
+  .refine(({ password, confirm }) => password === confirm, {
+    message: "As senhas não correspondem",
+    path: ["confirm"],
+  });
