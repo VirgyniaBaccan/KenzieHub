@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -15,4 +15,4 @@ export const GlobalStyle = createGlobalStyle`
 	--color-sucess: #3fe864ff;
 	--color-negative: #e83f5bff;
 }
-`
+`;

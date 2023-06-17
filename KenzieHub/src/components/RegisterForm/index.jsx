@@ -18,11 +18,8 @@ export const RegisterForm = () => {
 
   const createUser = async (formData) => {
     try {
-      // const headers = {
-      //   "Content-Type": "application/json",
-      // };
       const { data } = await api.post("/users", formData);
-      console.log(data);
+      // console.log(data);
       navigate("/");
     } catch (error) {
       console.log(error);
