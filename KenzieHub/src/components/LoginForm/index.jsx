@@ -4,8 +4,13 @@ import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "./loginSchema";
-import { StyledLoader } from "./styles";
+import { StyledForm, StyledLoader } from "./styles";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { StyledInput } from "../StyledInput";
+import { StyledButton } from "../StyledButton";
+import { StyledLink } from "../StyledLink";
 
 export const LoginForm = ({ setUserInfos }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,9 +35,12 @@ export const LoginForm = ({ setUserInfos }) => {
       localStorage.setItem("@TOKEN", JSON.stringify(data.token));
       localStorage.setItem("USERID", JSON.stringify(data.user.id));
 
-      navigate("/dashboard");
+      toast.success("Login realizado com sucesso", { autoClose: 900 });
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000);
     } catch (error) {
-      console.log(error);
+      toast.error("E-mail ou senha inválidos", { autoClose: 900 });
     } finally {
       setIsLoading(false);
     }
@@ -45,23 +53,32 @@ export const LoginForm = ({ setUserInfos }) => {
 
   return (
     <>
+      <ToastContainer />
       {isLoading ? (
-        <StyledLoader></StyledLoader>
+        <StyledLoader />
       ) : (
-        <form onSubmit={handleSubmit(submit)}>
-          <h2>Login</h2>
-          <label>Digite aqui seu email</label>
-          <input type="email" {...register("email")} />
+        <StyledForm onSubmit={handleSubmit(submit)}>
+          <div>
+            <h2>Login</h2>
+          </div>
+          <label>Email</label>
+          <StyledInput
+            type="email"
+            {...register("email")}
+            placeholder="Digite aqui seu email"
+          />
           {errors.email?.message}
-          <label>Digite aqui sua senha</label>
-          <input type="password" {...register("password")} />
+          <label>Senha</label>
+          <StyledInput
+            type="password"
+            {...register("password")}
+            placeholder="Digite aqui sua senha"
+          />
           {errors.password?.message}
-          <button>Entrar</button>
+          <StyledButton>Entrar</StyledButton>
           <p>Ainda não possui uma conta?</p>
-          <button>
-            <Link to="/registerpage">Cadastro</Link>
-          </button>
-        </form>
+          <StyledLink to="/registerpage">Cadastre-se </StyledLink>
+        </StyledForm>
       )}
     </>
   );

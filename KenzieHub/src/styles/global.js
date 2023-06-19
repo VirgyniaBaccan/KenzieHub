@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
 
     :root {
-    --font-primary: font-family: 'Inter', sans-serif;
+    --font-primary: 'Inter', sans-serif;
 	--color-primary: #ff577fff;
 	--color-primary-50: #ff427fff;
 	--color-primary-disable: #59323fff;
@@ -15,4 +15,12 @@ export const GlobalStyle = createGlobalStyle`
 	--color-sucess: #3fe864ff;
 	--color-negative: #e83f5bff;
 }
-`;
+
+.App {
+	display: flex;
+	justify-content: center;
+	background-color: var(--color-grey-4);
+	color: var(--color-grey-0);
+	width: 100%;
+	height: 100vh;
+}`;	

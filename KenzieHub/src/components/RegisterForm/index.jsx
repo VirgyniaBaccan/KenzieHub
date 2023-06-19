@@ -3,6 +3,11 @@ import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "./registerSchema";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { StyledInput } from "../StyledInput";
+import { StyledButton } from "../StyledButton";
+import { StyledForm } from "./styles";
 
 export const RegisterForm = () => {
   const {
@@ -19,10 +24,12 @@ export const RegisterForm = () => {
   const createUser = async (formData) => {
     try {
       const { data } = await api.post("/users", formData);
-      // console.log(data);
-      navigate("/");
+      toast.success("Conta criada com sucesso", { autoClose: 900 });
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (error) {
-      console.log(error);
+      toast.error("Ops, algo deu errado!", { autoClose: 900 });
     }
   };
 
@@ -33,42 +40,47 @@ export const RegisterForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(submit)} noValidate>
+      <ToastContainer />
+      <StyledForm onSubmit={handleSubmit(submit)} noValidate>
         <h2>Crie sua conta</h2>
         <p>Rápido e grátis, vamos nessa</p>
         <label>Nome</label>
-        <input
+        <StyledInput
           type="text"
           {...register("name")}
           placeholder="Digite aqui seu nome"
         />
         {errors.name?.message}
         <label>Email</label>
-        <input
+        <StyledInput
           type="email"
           {...register("email")}
           placeholder="Digite aqui seu email"
         />
         {errors.email?.message}
         <label>Senha</label>
-        <input
+        <StyledInput
           type="password"
           {...register("password")}
           placeholder="Digite aqui sua senha"
         />
         {errors.password?.message}
         <label>Confirmar senha</label>
-        <input
+        <StyledInput
           type="password"
           {...register("confirm")}
           placeholder="Digite novamente sua senha"
         />
         {errors.confirm?.message}
         <label>Bio</label>
-        <input type="text" {...register("bio")} placeholder="Fale sobre você" />
+        <StyledInput
+          type="text"
+          {...register("bio")}
+          placeholder="Fale sobre você"
+        />
         {errors.bio?.message}
         <label>Contato</label>
-        <input
+        <StyledInput
           type="text"
           {...register("contact")}
           placeholder="Opção de contato"
@@ -83,8 +95,8 @@ export const RegisterForm = () => {
           <option>Quarto módulo (Backend Avançado)</option>
         </select>
         {errors.course_module?.message}
-        <button>Cadastrar</button>
-      </form>
+        <StyledButton>Cadastrar</StyledButton>
+      </StyledForm>
     </>
   );
 };

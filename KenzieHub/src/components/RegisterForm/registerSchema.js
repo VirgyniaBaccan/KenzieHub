@@ -8,7 +8,7 @@ export const registerSchema = z
       .min(2, "O nome precisa conter pelo menos 2 caracteres."),
     password: z
       .string()
-      .nonempty()
+      .nonempty("A senha é obrigatória")
       .min(8, "A senha deve ter no mínimo 8 caracteres")
       .regex(/(?=.*?[A-Z])/, "É necessário ao menos uma letra maiúscula")
       .regex(/(?=.*?[a-z])/, "É necessário ao menos uma letra minúscula")
@@ -19,7 +19,10 @@ export const registerSchema = z
       ),
     confirm: z.string(),
     course_module: z.string().nonempty("Selecione uma opção"),
-    email: z.string().nonempty().email("O e-mail fornecido é inválido"),
+    email: z
+      .string()
+      .nonempty("O e-mail é obrigatório")
+      .email("O e-mail fornecido é inválido"),
     bio: z
       .string()
       .nonempty("A bio é obrigatória")
