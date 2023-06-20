@@ -2,7 +2,7 @@ import { RoutesMain } from "./routes/RoutesMain";
 import { GlobalStyle } from "./styles/global";
 import { GlobalReset } from "./styles/reset";
 
-export function App() {
+export const App = () => {
   return (
     <div className="App">
       <GlobalStyle />
@@ -10,4 +10,4 @@ export function App() {
       <RoutesMain />
     </div>
   );
-}
+};

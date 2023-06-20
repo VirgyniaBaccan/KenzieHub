@@ -34,8 +34,8 @@ img {
 }
 
 body {
-    width: 100vw;
     height: 100vh;
-    font-family: var(--font-primary)
+    font-family: var(--font-primary);
+    background-color: var(--color-grey-4);
 };
 `;

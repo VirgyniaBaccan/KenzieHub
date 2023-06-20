@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import logo from "../../assets/Logo-KenzieHub.svg";
+import { StyledLink } from "../RegisterPage/styles";
+import { StyledContainer, StyledHeader } from "./styles";
 
 export const Dashboard = ({ userInfos }) => {
   const userLogout = () => {
@@ -8,24 +10,28 @@ export const Dashboard = ({ userInfos }) => {
 
   return (
     <>
-      <header>
-        <img src={logo} alt="Logotipo KenzieHub" />
-        <nav>
-          <Link onClick={userLogout} to="/">
+      <StyledHeader>
+        <div className="header__container">
+          <img src={logo} alt="Logotipo KenzieHub" />
+          <StyledLink onClick={userLogout} to="/">
             Sair
-          </Link>
-        </nav>
-      </header>
-      <div>
-        <h2>{userInfos.name}</h2>
-        <h3>{userInfos.course_module}</h3>
-      </div>
-      <div>
-        <h2>Que pena! Estamos em desenvolvimento :/</h2>
-        <p>
-          Nossa aplicação está em desenvolvimento, em breve teremos novidades
-        </p>
-      </div>
+          </StyledLink>
+        </div>
+      </StyledHeader>
+      <StyledContainer>
+        <div className="div__user-container">
+          <div className="div__user">
+            <h2>Olá, {userInfos.name}</h2>
+            <h3>{userInfos.course_module}</h3>
+          </div>
+        </div>
+        <div className="div__infos">
+          <h2>Que pena! Estamos em desenvolvimento :/</h2>
+          <p>
+            Nossa aplicação está em desenvolvimento, em breve teremos novidades
+          </p>
+        </div>
+      </StyledContainer>
     </>
   );
 };

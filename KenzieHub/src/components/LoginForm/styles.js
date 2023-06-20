@@ -22,6 +22,46 @@ export const StyledForm = styled.form`
     justify-content: center;
     align-items: center;
   }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 20px;
+  }
+
+  h2 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  p {
+    display: flex;
+    align-self: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.375rem;
+    color: var(--color-grey-1);
+  }
+
+  label {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.7614rem;
+    line-height: 0rem;
+  }
+
+  span {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.7614rem;
+    line-height: 0rem;
+    color: var(--color-negative);
+  }
 `;
 
 export const StyledLoader = styled.div`
@@ -32,7 +72,7 @@ export const StyledLoader = styled.div`
   height: 3.75rem;
   animation: spin 1s linear infinite;
   margin: 0 auto;
-  margin-top: 20%;
+  margin-top: 15%;
 
   @keyframes spin {
     0% {

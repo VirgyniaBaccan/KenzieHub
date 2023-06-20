@@ -24,12 +24,18 @@ export const RegisterForm = () => {
   const createUser = async (formData) => {
     try {
       const { data } = await api.post("/users", formData);
-      toast.success("Conta criada com sucesso", { autoClose: 900 });
+      toast.success("Conta criada com sucesso", {
+        autoClose: 900,
+        className: "toast__message",
+      });
       setTimeout(() => {
         navigate("/");
       }, 2000);
     } catch (error) {
-      toast.error("Ops, algo deu errado!", { autoClose: 900 });
+      toast.error("Ops, algo deu errado!", {
+        autoClose: 900,
+        className: "toast__message",
+      });
     }
   };
 
@@ -42,59 +48,60 @@ export const RegisterForm = () => {
     <>
       <ToastContainer />
       <StyledForm onSubmit={handleSubmit(submit)} noValidate>
-        <h2>Crie sua conta</h2>
-        <p>Rápido e grátis, vamos nessa</p>
+        <div>
+          <h2>Crie sua conta</h2>
+          <p>Rápido e grátis, vamos nessa</p>
+        </div>
         <label>Nome</label>
         <StyledInput
           type="text"
           {...register("name")}
           placeholder="Digite aqui seu nome"
         />
-        {errors.name?.message}
+        <span>{errors.name?.message}</span>
         <label>Email</label>
         <StyledInput
           type="email"
           {...register("email")}
           placeholder="Digite aqui seu email"
         />
-        {errors.email?.message}
+        <span>{errors.email?.message}</span>
         <label>Senha</label>
         <StyledInput
           type="password"
           {...register("password")}
           placeholder="Digite aqui sua senha"
         />
-        {errors.password?.message}
+        <span>{errors.password?.message}</span>
         <label>Confirmar senha</label>
         <StyledInput
           type="password"
           {...register("confirm")}
           placeholder="Digite novamente sua senha"
         />
-        {errors.confirm?.message}
+        <span>{errors.confirm?.message}</span>
         <label>Bio</label>
         <StyledInput
           type="text"
           {...register("bio")}
           placeholder="Fale sobre você"
         />
-        {errors.bio?.message}
+        <span>{errors.bio?.message}</span>
         <label>Contato</label>
         <StyledInput
           type="text"
           {...register("contact")}
           placeholder="Opção de contato"
         />
-        {errors.contact?.message}
+        <span>{errors.contact?.message}</span>
         <label>Selecionar módulo</label>
         <select {...register("course_module")}>
-          <option>Selecione</option>
           <option>Primeiro módulo (Introdução ao Frontend)</option>
           <option>Segundo módulo (Frontend Avançado)</option>
           <option>Terceiro módulo (Introdução ao Backend)</option>
           <option>Quarto módulo (Backend Avançado)</option>
         </select>
-        {errors.course_module?.message}
+        <span>{errors.course_module?.message}</span>
         <StyledButton>Cadastrar</StyledButton>
       </StyledForm>
     </>

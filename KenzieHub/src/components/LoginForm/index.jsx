@@ -35,12 +35,18 @@ export const LoginForm = ({ setUserInfos }) => {
       localStorage.setItem("@TOKEN", JSON.stringify(data.token));
       localStorage.setItem("USERID", JSON.stringify(data.user.id));
 
-      toast.success("Login realizado com sucesso", { autoClose: 900 });
+      toast.success("Login realizado com sucesso", {
+        autoClose: 900,
+        className: "toast__message",
+      });
       setTimeout(() => {
         navigate("/dashboard");
       }, 2000);
     } catch (error) {
-      toast.error("E-mail ou senha inválidos", { autoClose: 900 });
+      toast.error("E-mail ou senha inválidos", {
+        autoClose: 900,
+        className: "toast__message",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -67,14 +73,14 @@ export const LoginForm = ({ setUserInfos }) => {
             {...register("email")}
             placeholder="Digite aqui seu email"
           />
-          {errors.email?.message}
+          <span>{errors.email?.message}</span>
           <label>Senha</label>
           <StyledInput
             type="password"
             {...register("password")}
             placeholder="Digite aqui sua senha"
           />
-          {errors.password?.message}
+          <span>{errors.password?.message}</span>
           <StyledButton>Entrar</StyledButton>
           <p>Ainda não possui uma conta?</p>
           <StyledLink to="/registerpage">Cadastre-se </StyledLink>

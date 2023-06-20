@@ -18,9 +18,18 @@ export const GlobalStyle = createGlobalStyle`
 
 .App {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
-	background-color: var(--color-grey-4);
+	background: var(--color-grey-4);
 	color: var(--color-grey-0);
 	width: 100%;
-	height: 100vh;
-}`;	
+}
+
+.toast__message {
+	background: var(--color-grey-2);
+	font-style: normal;
+	font-weight: 700;
+	font-size: .875rem;
+	line-height: 1.5rem;
+	color: var(--color-grey-0);
+}`;

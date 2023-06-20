@@ -14,10 +14,12 @@ export const StyledInput = styled.input`
 
   font-style: normal;
   font-weight: 400;
-  font-size: 16.2426px;
-  line-height: 26px;
+  font-size: 1.0152rem;
+  line-height: 1.625rem;
 
-  color: var(--color-grey-1);
+  ::placeholder {
+    color: var(--color-grey-1);
+  }
 
   :focus {
     color: var(--color-grey-0);
