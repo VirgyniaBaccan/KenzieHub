@@ -1,6 +1,4 @@
 import { useForm } from "react-hook-form";
-import { api } from "../../services/api";
-import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "./registerSchema";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { StyledInput } from "../StyledInput";
 import { StyledButton } from "../StyledButton";
 import { StyledForm } from "./styles";
+import { UserContext } from "../../providers/UserContext";
+import { useContext } from "react";
 
 export const RegisterForm = () => {
   const {
@@ -19,25 +19,7 @@ export const RegisterForm = () => {
     resolver: zodResolver(registerSchema),
   });
 
-  const navigate = useNavigate();
-
-  const createUser = async (formData) => {
-    try {
-      const { data } = await api.post("/users", formData);
-      toast.success("Conta criada com sucesso", {
-        autoClose: 900,
-        className: "toast__message",
-      });
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
-    } catch (error) {
-      toast.error("Ops, algo deu errado!", {
-        autoClose: 900,
-        className: "toast__message",
-      });
-    }
-  };
+  const { createUser } = useContext(UserContext);
 
   const submit = async (formData) => {
     await createUser(formData);

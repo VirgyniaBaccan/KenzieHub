@@ -2,11 +2,11 @@
 import logo from "../../assets/Logo-KenzieHub.svg";
 import { StyledLink } from "../RegisterPage/styles";
 import { StyledContainer, StyledHeader } from "./styles";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserContext";
 
-export const Dashboard = ({ userInfos }) => {
-  const userLogout = () => {
-    localStorage.clear("TOKEN", "USERID");
-  };
+export const Dashboard = () => {
+  const { userInfos, userLogout } = useContext(UserContext);
 
   return (
     <>

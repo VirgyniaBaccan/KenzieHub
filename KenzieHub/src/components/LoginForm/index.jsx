@@ -1,20 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { api } from "../../services/api";
-import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "./loginSchema";
 import { StyledForm, StyledLoader } from "./styles";
-import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { StyledInput } from "../StyledInput";
 import { StyledButton } from "../StyledButton";
 import { StyledLink } from "../StyledLink";
+import { UserContext } from "../../providers/UserContext";
 
-export const LoginForm = ({ setUserInfos }) => {
-  const [isLoading, setIsLoading] = useState(false);
-
+export const LoginForm = () => {
   const {
     register,
     handleSubmit,
@@ -24,36 +20,12 @@ export const LoginForm = ({ setUserInfos }) => {
     resolver: zodResolver(loginSchema),
   });
 
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const userLogin = async (formData) => {
-    try {
-      setIsLoading(true);
-      const { data } = await api.post("/sessions", formData);
-      setUserInfos(data.user);
-
-      localStorage.setItem("@TOKEN", JSON.stringify(data.token));
-      localStorage.setItem("USERID", JSON.stringify(data.user.id));
-
-      toast.success("Login realizado com sucesso", {
-        autoClose: 900,
-        className: "toast__message",
-      });
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 2000);
-    } catch (error) {
-      toast.error("E-mail ou senha inválidos", {
-        autoClose: 900,
-        className: "toast__message",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { userLogin } = useContext(UserContext);
 
   const submit = async (formData) => {
-    await userLogin(formData);
+    await userLogin(formData, setIsLoading);
     reset();
   };
 
