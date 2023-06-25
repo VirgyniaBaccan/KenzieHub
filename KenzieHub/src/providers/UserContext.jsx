@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 import { toast } from "react-toastify";
@@ -8,7 +8,36 @@ export const UserContext = createContext({});
 
 //provider é um componente
 export const UserProvider = ({ children }) => {
-  const [userInfos, setUserInfos] = useState([]);
+  const [userInfos, setUserInfos] = useState(null);
+  const currentPath = window.location.pathname;
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("@TOKEN");
+
+    const loadUserInfos = async () => {
+      try {
+        setIsLoading(true);
+        const { data } = await api.get("/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUserInfos(data);
+        // navigate("/dashboard");
+        navigate(currentPath);
+      } catch (error) {
+        console.log(error);
+        localStorage.removeItem("@TOKEN");
+        localStorage.removeItem("USERID");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    if (token) {
+      loadUserInfos();
+    }
+  }, []);
 
   const navigate = useNavigate();
 
@@ -34,11 +63,10 @@ export const UserProvider = ({ children }) => {
     try {
       setIsLoading(true);
       const { data } = await api.post("/sessions", formData);
-      console.log(data.user);
       setUserInfos(data.user);
 
-      localStorage.setItem("@TOKEN", JSON.stringify(data.token));
-      localStorage.setItem("USERID", JSON.stringify(data.user.id));
+      localStorage.setItem("@TOKEN", data.token);
+      localStorage.setItem("USERID", data.user.id);
 
       toast.success("Login realizado com sucesso", {
         autoClose: 900,
@@ -70,7 +98,7 @@ export const UserProvider = ({ children }) => {
   return (
     //age como um exportador de variáveis, funções, estados etc;
     <UserContext.Provider
-      value={{ userInfos, userLogin, createUser, userLogout }}
+      value={{ userInfos, userLogin, createUser, userLogout, isLoading }}
     >
       {children}
     </UserContext.Provider>

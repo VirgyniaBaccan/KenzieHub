@@ -2,11 +2,15 @@
 import logo from "../../assets/Logo-KenzieHub.svg";
 import { StyledLink } from "../RegisterPage/styles";
 import { StyledContainer, StyledHeader } from "./styles";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../providers/UserContext";
+// import { TechContext } from "../../providers/TechContext";
+import { CreateTechForm } from "../../components/CreateTechForm";
 
 export const Dashboard = () => {
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
   const { userInfos, userLogout } = useContext(UserContext);
+  // const { createTech } = useContext(TechContext);
 
   return (
     <>
@@ -25,12 +29,10 @@ export const Dashboard = () => {
             <h3>{userInfos.course_module}</h3>
           </div>
         </div>
-        <div className="div__infos">
-          <h2>Que pena! Estamos em desenvolvimento :/</h2>
-          <p>
-            Nossa aplicação está em desenvolvimento, em breve teremos novidades
-          </p>
-        </div>
+        <button onClick={() => setIsCreateOpen(!isCreateOpen)}>
+          {isCreateOpen ? "Fechar" : "Criar Tecnologias"}
+        </button>
+        {isCreateOpen ? <CreateTechForm /> : null}
       </StyledContainer>
     </>
   );
