@@ -5,13 +5,13 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../providers/UserContext";
 import { TechModal } from "../../components/Modal";
 import { TechContext } from "../../providers/TechContext";
-import { DeletingBox } from "../../components/DeletingBox";
+import { ChangingBox } from "../../components/ChangingBox";
 
 export const Dashboard = () => {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const { userInfos, userLogout } = useContext(UserContext);
   const { techList, deleteTech, updateTech } = useContext(TechContext);
-  const [isDeleting, setIsDeleting] = useState(null);
+  const [isChanging, setIsChanging] = useState(null);
 
   return (
     <>
@@ -36,24 +36,22 @@ export const Dashboard = () => {
             {isCreateOpen ? "Fechar" : "+"}
           </StyledLink>
           {isCreateOpen ? <TechModal /> : null}
-          {isDeleting ? (
-            <DeletingBox
+          {isChanging ? (
+            <ChangingBox
               updateCallback={async (formData) => {
-                await updateTech(tech.id, formData), setIsDeleting(null);
+                await updateTech(isChanging.id, formData), setIsChanging(null);
               }}
               deleteCallback={async () => {
-                await deleteTech(isDeleting.id), setIsDeleting(null);
+                await deleteTech(isChanging.id), setIsChanging(null);
               }}
             >
               <p>Tem certeza que deseja excluir essa notícia?</p>
-            </DeletingBox>
+            </ChangingBox>
           ) : null}
           {techList.map((tech) => (
-            <li key={tech.id} onClick={() => setIsDeleting(tech)}>
+            <li key={tech.id} onClick={() => setIsChanging(tech)}>
               <h3>{tech.title}</h3>
               <p>{tech.status}</p>
-              {/* <button onClick={() => deleteTech(tech.id)}>Excluir</button> */}
-              {/* <button onClick={() => setIsDeleting(tech)}>Excluir</button> */}
             </li>
           ))}
         </div>

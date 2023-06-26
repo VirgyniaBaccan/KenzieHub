@@ -4,11 +4,18 @@ import { useContext } from "react";
 import { TechContext } from "../../providers/TechContext";
 import { StyledInput } from "../StyledInput";
 
-export const DeletingBox = ({ children, updateCallback, deleteCallback, tech }) => {
+export const ChangingBox = ({
+  children,
+  updateCallback,
+  deleteCallback,
+  tech,
+}) => {
   const { register, handleSubmit } = useForm();
 
-  const { updateTech} = useContext(TechContext);
-// console.log(tech)
+  const { updateTech } = useContext(TechContext);
+
+  // const tech = techList.find((tech) => tech.id === techId);
+
   const submit = (formData) => {
     updateTech(tech.id, formData);
   };
@@ -21,9 +28,10 @@ export const DeletingBox = ({ children, updateCallback, deleteCallback, tech }) 
           <StyledInput
             type="text"
             placeholder="Título"
-            defaultValue="tecnologia" disabled
+            defaultValue="Tecnologia"
+            disabled
           />
-          <select placeholder="Status" {...register("status")}>
+          <select placeholder="status" {...register("status")}>
             <option>Iniciante</option>
             <option>Intermediário</option>
             <option>Avançado</option>

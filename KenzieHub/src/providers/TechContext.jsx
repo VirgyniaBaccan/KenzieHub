@@ -23,7 +23,6 @@ export const TechProvider = ({ children }) => {
         console.log(error);
       } finally {
         setIsLoading(false);
-        console.log(techList);
       }
     };
     loadTechData();
@@ -41,7 +40,6 @@ export const TechProvider = ({ children }) => {
 
       //Atualizando front
       setTechList((techList) => [...techList, data]);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
