@@ -1,6 +1,6 @@
 import logo from "../../assets/Logo-KenzieHub.svg";
 import { StyledLink } from "../RegisterPage/styles";
-import { StyledContainer, StyledHeader } from "./styles";
+import { StyledContainer, StyledHeader, StyledList, StyledTechDiv } from "./styles";
 import { useContext, useState } from "react";
 import { UserContext } from "../../providers/UserContext";
 import { TechModal } from "../../components/Modal";
@@ -30,11 +30,13 @@ export const Dashboard = () => {
             <h3>{userInfos.course_module}</h3>
           </div>
         </div>
-        <div>
-          <h2>Tecnologias</h2>
-          <StyledLink onClick={() => setIsCreateOpen(!isCreateOpen)}>
-            {isCreateOpen ? "Fechar" : "+"}
-          </StyledLink>
+        <div className="div__techs">
+          <StyledTechDiv>
+            <h2>Tecnologias</h2>
+            <StyledLink onClick={() => setIsCreateOpen(!isCreateOpen)}>
+              {isCreateOpen ? "Fechar" : "+"}
+            </StyledLink>
+          </StyledTechDiv>
           {isCreateOpen ? <TechModal /> : null}
           {isChanging ? (
             <ChangingBox
@@ -44,16 +46,16 @@ export const Dashboard = () => {
               deleteCallback={async () => {
                 await deleteTech(isChanging.id), setIsChanging(null);
               }}
-            >
-              <p>Tem certeza que deseja excluir essa notícia?</p>
-            </ChangingBox>
+            ></ChangingBox>
           ) : null}
-          {techList.map((tech) => (
-            <li key={tech.id} onClick={() => setIsChanging(tech)}>
-              <h3>{tech.title}</h3>
-              <p>{tech.status}</p>
-            </li>
-          ))}
+          <StyledList>
+            {techList.map((tech) => (
+              <li key={tech.id} onClick={() => setIsChanging(tech)}>
+                <h3 className="title__tech">{tech.title}</h3>
+                <p className="status__tech">{tech.status}</p>
+              </li>
+            ))}
+          </StyledList>
         </div>
       </StyledContainer>
     </>

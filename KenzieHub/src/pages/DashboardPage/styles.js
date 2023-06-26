@@ -72,6 +72,15 @@ export const StyledContainer = styled.div`
     line-height: 1.5rem;
   }
 
+  .div__techs {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 56.25rem;
+    margin-top: 20px;
+  }
+
   @media (max-width: 43.75rem) {
     .div__user {
       flex-direction: column;
@@ -80,3 +89,46 @@ export const StyledContainer = styled.div`
     }
   }
 `;
+
+export const StyledTechDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+
+export const StyledList = styled.ul`
+display: flex;
+flex-direction: column;
+list-style: none;
+align-items: center;
+justify-content: space-between;
+width: 100%;
+background-color: blue;
+margin-top: 1.25rem;
+background: var(--color-grey-3);
+padding: 2rem;
+gap: 1.5625rem;
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--color-grey-4);
+  padding: 0.8rem;
+}
+
+li:hover {
+  background: var(--color-grey-2);
+}
+
+.title__tech {
+  font-size: .875rem;
+  color: var(--color-grey-0);
+}
+
+.status__tech {
+  font-size: .75rem;
+  color: var(--color-grey-1);
+}`

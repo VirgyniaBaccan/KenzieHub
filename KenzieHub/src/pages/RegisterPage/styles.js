@@ -25,7 +25,7 @@ export const StyledLink = styled(Link)`
   border-radius: 0.25rem;
 
   font-weight: 600;
-  font-size: .75rem;
+  font-size: 0.75rem;
   line-height: 1.75rem;
   text-align: center;
   color: var(--color-grey-0);

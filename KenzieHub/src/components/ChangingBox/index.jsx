@@ -14,8 +14,6 @@ export const ChangingBox = ({
 
   const { updateTech } = useContext(TechContext);
 
-  // const tech = techList.find((tech) => tech.id === techId);
-
   const submit = (formData) => {
     updateTech(tech.id, formData);
   };

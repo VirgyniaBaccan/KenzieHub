@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledModalOverlay = styled.div`
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.2);

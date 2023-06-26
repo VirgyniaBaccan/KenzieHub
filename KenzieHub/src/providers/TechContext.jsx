@@ -7,7 +7,6 @@ export const TechProvider = ({ children }) => {
   const [techList, setTechList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // a hora que montar, carrega as tecnologias (lê da  api)
   useEffect(() => {
     const loadTechData = async () => {
       const token = localStorage.getItem("@TOKEN");
@@ -31,32 +30,26 @@ export const TechProvider = ({ children }) => {
   const createTech = async (formData) => {
     try {
       const token = localStorage.getItem("@TOKEN");
-      //Atualizando o backend ('banco de dados')
       const { data } = await api.post("/users/techs", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      //Atualizando front
       setTechList((techList) => [...techList, data]);
     } catch (error) {
       console.log(error);
     }
   };
 
-  // DELETE /users/techs/:tech_id
-
   const deleteTech = async (techId) => {
     try {
       const token = localStorage.getItem("@TOKEN");
-      //Atualiza o back (requisição sempre atualiza back)
       await api.delete(`/users/techs/${techId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      //atualiza front
       setTechList((techList) => techList.filter((tech) => tech.id !== techId));
     } catch (error) {
       console.log(error);

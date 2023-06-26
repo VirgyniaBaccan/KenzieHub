@@ -2,11 +2,8 @@ import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 import { toast } from "react-toastify";
-//lado de fora da fç componente
 export const UserContext = createContext({});
-//vazio pois ao longo preencheremos
 
-//provider é um componente
 export const UserProvider = ({ children }) => {
   const [userInfos, setUserInfos] = useState(null);
   const currentPath = window.location.pathname;
@@ -24,7 +21,6 @@ export const UserProvider = ({ children }) => {
           },
         });
         setUserInfos(data);
-        // navigate("/dashboard");
         navigate(currentPath);
       } catch (error) {
         console.log(error);
@@ -91,12 +87,7 @@ export const UserProvider = ({ children }) => {
     setUserInfos(null);
   };
 
-  // useEffect(() => {
-  //   console.log(userInfos);
-  // }, [userInfos]);
-
   return (
-    //age como um exportador de variáveis, funções, estados etc;
     <UserContext.Provider
       value={{ userInfos, userLogin, createUser, userLogout, isLoading }}
     >
