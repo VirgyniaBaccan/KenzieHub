@@ -98,37 +98,38 @@ export const StyledTechDiv = styled.div`
 `;
 
 export const StyledList = styled.ul`
-display: flex;
-flex-direction: column;
-list-style: none;
-align-items: center;
-justify-content: space-between;
-width: 100%;
-background-color: blue;
-margin-top: 1.25rem;
-background: var(--color-grey-3);
-padding: 2rem;
-gap: 1.5625rem;
-
-li {
   display: flex;
+  flex-direction: column;
+  list-style: none;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background: var(--color-grey-4);
-  padding: 0.8rem;
-}
+  background-color: blue;
+  margin-top: 1.25rem;
+  background: var(--color-grey-3);
+  padding: 2rem;
+  gap: 1.5625rem;
 
-li:hover {
-  background: var(--color-grey-2);
-}
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: var(--color-grey-4);
+    padding: 0.8rem;
+  }
 
-.title__tech {
-  font-size: .875rem;
-  color: var(--color-grey-0);
-}
+  li:hover {
+    background: var(--color-grey-2);
+  }
 
-.status__tech {
-  font-size: .75rem;
-  color: var(--color-grey-1);
-}`
+  .title__tech {
+    font-size: 0.875rem;
+    color: var(--color-grey-0);
+  }
+
+  .status__tech {
+    font-size: 0.75rem;
+    color: var(--color-grey-1);
+  }
+`;

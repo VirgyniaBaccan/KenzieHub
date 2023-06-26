@@ -1,6 +1,11 @@
 import logo from "../../assets/Logo-KenzieHub.svg";
 import { StyledLink } from "../RegisterPage/styles";
-import { StyledContainer, StyledHeader, StyledList, StyledTechDiv } from "./styles";
+import {
+  StyledContainer,
+  StyledHeader,
+  StyledList,
+  StyledTechDiv,
+} from "./styles";
 import { useContext, useState } from "react";
 import { UserContext } from "../../providers/UserContext";
 import { TechModal } from "../../components/Modal";
@@ -8,10 +13,18 @@ import { TechContext } from "../../providers/TechContext";
 import { ChangingBox } from "../../components/ChangingBox";
 
 export const Dashboard = () => {
-  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  // const [isCreateOpen, setIsCreateOpen] = useState(false);
   const { userInfos, userLogout } = useContext(UserContext);
-  const { techList, deleteTech, updateTech } = useContext(TechContext);
-  const [isChanging, setIsChanging] = useState(null);
+  const {
+    techList,
+    deleteTech,
+    updateTech,
+    isCreateOpen,
+    setIsCreateOpen,
+    setIsChanging,
+    isChanging,
+  } = useContext(TechContext);
+  // const [isChanging, setIsChanging] = useState(null);
 
   return (
     <>
@@ -33,9 +46,7 @@ export const Dashboard = () => {
         <div className="div__techs">
           <StyledTechDiv>
             <h2>Tecnologias</h2>
-            <StyledLink onClick={() => setIsCreateOpen(!isCreateOpen)}>
-              {isCreateOpen ? "Fechar" : "+"}
-            </StyledLink>
+            <p onClick={() => setIsCreateOpen(true)}>+</p>
           </StyledTechDiv>
           {isCreateOpen ? <TechModal /> : null}
           {isChanging ? (

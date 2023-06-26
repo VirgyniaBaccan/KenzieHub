@@ -6,6 +6,8 @@ export const TechContext = createContext({});
 export const TechProvider = ({ children }) => {
   const [techList, setTechList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [isChanging, setIsChanging] = useState(null);
 
   useEffect(() => {
     const loadTechData = async () => {
@@ -57,15 +59,17 @@ export const TechProvider = ({ children }) => {
   };
 
   const updateTech = async (techId, formData) => {
+    console.log(techId);
+    console.log(formData);
     try {
       const token = localStorage.getItem("@TOKEN");
 
-      await api.put(`/users/techs/${techId}`, formData, {
+      const { data } = await api.put(`/users/techs/${techId}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
+      console.log(data);
       setTechList((techList) =>
         techList.map((tech) =>
           tech.id === techId ? { ...tech, ...formData } : tech
@@ -78,7 +82,17 @@ export const TechProvider = ({ children }) => {
 
   return (
     <TechContext.Provider
-      value={{ isLoading, techList, createTech, deleteTech, updateTech }}
+      value={{
+        isLoading,
+        techList,
+        createTech,
+        deleteTech,
+        updateTech,
+        isCreateOpen,
+        setIsCreateOpen,
+        isChanging,
+        setIsChanging,
+      }}
     >
       {children}
     </TechContext.Provider>

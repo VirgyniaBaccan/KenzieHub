@@ -1,9 +1,10 @@
 import { CreateTechForm } from "../CreateTechForm";
+import { StyledModal } from "./modal";
 
 export const TechModal = () => {
   return (
-    <div>
+    <StyledModal>
       <CreateTechForm />
-    </div>
+    </StyledModal>
   );
 };

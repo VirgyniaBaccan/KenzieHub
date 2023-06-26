@@ -10,9 +10,10 @@ export const ChangingBox = ({
   deleteCallback,
   tech,
 }) => {
-  const { register, handleSubmit } = useForm();
+  // const { register, handleSubmit } = useForm({defaultValues: {status: tech.status}});
 
-  const { updateTech } = useContext(TechContext);
+  const { updateTech, setIsChanging } = useContext(TechContext);
+  const { register, handleSubmit } = useForm();
 
   const submit = (formData) => {
     updateTech(tech.id, formData);
@@ -22,7 +23,9 @@ export const ChangingBox = ({
     <StyledModalOverlay role="dialog">
       <StyledModalBox>
         {children}
-        <form onSubmit={handleSubmit(submit)}>
+        <h2>Tecnologia detalhes</h2>
+        <button onClick={() => setIsChanging(null)}>X</button>
+        <form onSubmit={handleSubmit(updateCallback)}>
           <StyledInput
             type="text"
             placeholder="Título"
@@ -30,13 +33,15 @@ export const ChangingBox = ({
             disabled
           />
           <select placeholder="status" {...register("status")}>
-            <option>Iniciante</option>
-            <option>Intermediário</option>
-            <option>Avançado</option>
+            <option value={"Iniciante"}>Iniciante</option>
+            <option value={"Intermediário"}>Intermediário</option>
+            <option value={"Avançado"}>Avançado</option>
           </select>
+          <button type="submit">Salvar alterações</button>
         </form>
-        <button onClick={updateCallback}>Salvar alterações</button>
-        <button onClick={deleteCallback}>Excluir</button>
+        <button type="button" onClick={deleteCallback}>
+          Excluir
+        </button>
       </StyledModalBox>
     </StyledModalOverlay>
   );
