@@ -1,27 +1,28 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { UserContext } from "../../providers/UserContext";
 import { TechContext } from "../../providers/TechContext";
+import { StyledInput } from "../StyledInput";
+import { StyledButton } from "../StyledButton";
 
 export const CreateTechForm = () => {
-  const { register, handleSubmit } = useForm;
-  const { userInfos } = useContext(UserContext);
+  const { register, handleSubmit } = useForm();
+
   const { createTech } = useContext(TechContext);
 
-  const submit = (FormData) => {
-    const data = { ...FormData, author: userInfos.name };
-    createTech(data)
+  const submit = (formData) => {
+    // const data = { formData };
+    createTech(formData);
   };
 
   return (
-    <form>
-      <Input placeholder="Título" {...register("title")} />
+    <form onSubmit={handleSubmit(submit)}>
+      <StyledInput type="text" placeholder="Título" {...register("title")} />
       <select placeholder="Status" {...register("status")}>
         <option>Iniciante</option>
         <option>Intermediário</option>
         <option>Avançado</option>
       </select>
-      <button type="submit">Criar tecnologia</button>
+      <StyledButton type="submit">Criar tecnologia</StyledButton>
     </form>
   );
 };
