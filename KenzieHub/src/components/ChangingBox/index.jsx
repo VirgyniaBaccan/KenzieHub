@@ -34,6 +34,7 @@ export const ChangingBox = ({ children, updateCallback, deleteCallback }) => {
             className="form__select"
             placeholder="status"
             {...register("status")}
+            defaultValue={isChanging.status}
           >
             <option value={"Iniciante"}>Iniciante</option>
             <option value={"Intermediário"}>Intermediário</option>
@@ -41,7 +42,9 @@ export const ChangingBox = ({ children, updateCallback, deleteCallback }) => {
           </select>
         </form>
         <div className="div__buttons">
-          <StyledButton className="button__save" type="submit">Salvar alterações</StyledButton>
+          <StyledButton className="button__save" type="submit">
+            Salvar alterações
+          </StyledButton>
           <StyledLink type="button" onClick={deleteCallback}>
             Excluir
           </StyledLink>
