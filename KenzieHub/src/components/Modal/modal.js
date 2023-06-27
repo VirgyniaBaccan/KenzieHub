@@ -6,8 +6,9 @@ export const StyledModal = styled.div`
   justify-content: center;
   width: 100%;
   height: 100vh;
-  position: fixed;
+  position: absolute;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
-  top: 5%;
+  top: 0;
+  left: 0;
 `;

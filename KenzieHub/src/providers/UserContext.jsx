@@ -39,7 +39,7 @@ export const UserProvider = ({ children }) => {
 
   const createUser = async (formData) => {
     try {
-      const { data } = await api.post("/users", formData);
+      await api.post("/users", formData);
       toast.success("Conta criada com sucesso", {
         autoClose: 900,
         className: "toast__message",

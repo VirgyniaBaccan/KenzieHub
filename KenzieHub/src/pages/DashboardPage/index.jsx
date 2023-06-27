@@ -1,19 +1,19 @@
 import logo from "../../assets/Logo-KenzieHub.svg";
 import { StyledLink } from "../RegisterPage/styles";
 import {
+  StyledButtonPlus,
   StyledContainer,
   StyledHeader,
   StyledList,
   StyledTechDiv,
 } from "./styles";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext";
 import { TechModal } from "../../components/Modal";
 import { TechContext } from "../../providers/TechContext";
 import { ChangingBox } from "../../components/ChangingBox";
 
 export const Dashboard = () => {
-  // const [isCreateOpen, setIsCreateOpen] = useState(false);
   const { userInfos, userLogout } = useContext(UserContext);
   const {
     techList,
@@ -24,7 +24,6 @@ export const Dashboard = () => {
     setIsChanging,
     isChanging,
   } = useContext(TechContext);
-  // const [isChanging, setIsChanging] = useState(null);
 
   return (
     <>
@@ -46,7 +45,9 @@ export const Dashboard = () => {
         <div className="div__techs">
           <StyledTechDiv>
             <h2>Tecnologias</h2>
-            <p onClick={() => setIsCreateOpen(true)}>+</p>
+            <StyledButtonPlus onClick={() => setIsCreateOpen(true)}>
+              +
+            </StyledButtonPlus>
           </StyledTechDiv>
           {isCreateOpen ? <TechModal /> : null}
           {isChanging ? (
@@ -59,14 +60,18 @@ export const Dashboard = () => {
               }}
             ></ChangingBox>
           ) : null}
-          <StyledList>
-            {techList.map((tech) => (
-              <li key={tech.id} onClick={() => setIsChanging(tech)}>
-                <h3 className="title__tech">{tech.title}</h3>
-                <p className="status__tech">{tech.status}</p>
-              </li>
-            ))}
-          </StyledList>
+          {techList.length > 0 ? (
+            <StyledList>
+              {techList.map((tech) => (
+                <li key={tech.id} onClick={() => setIsChanging(tech)}>
+                  <h3 className="title__tech">{tech.title}</h3>
+                  <p className="status__tech">{tech.status}</p>
+                </li>
+              ))}
+            </StyledList>
+          ) : (
+            <StyledList>Você ainda não cadastrou nenhuma tecnologia</StyledList>
+          )}
         </div>
       </StyledContainer>
     </>

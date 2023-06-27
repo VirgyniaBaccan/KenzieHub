@@ -41,6 +41,8 @@ export const TechProvider = ({ children }) => {
       setTechList((techList) => [...techList, data]);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsCreateOpen(false);
     }
   };
 
@@ -59,17 +61,14 @@ export const TechProvider = ({ children }) => {
   };
 
   const updateTech = async (techId, formData) => {
-    console.log(techId);
-    console.log(formData);
     try {
       const token = localStorage.getItem("@TOKEN");
 
-      const { data } = await api.put(`/users/techs/${techId}`, formData, {
+      await api.put(`/users/techs/${techId}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(data);
       setTechList((techList) =>
         techList.map((tech) =>
           tech.id === techId ? { ...tech, ...formData } : tech
@@ -77,6 +76,8 @@ export const TechProvider = ({ children }) => {
       );
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsChanging(false);
     }
   };
 

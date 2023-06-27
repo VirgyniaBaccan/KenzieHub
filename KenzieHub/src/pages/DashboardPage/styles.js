@@ -76,7 +76,7 @@ export const StyledContainer = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 100%;
+    width: 90%;
     max-width: 56.25rem;
     margin-top: 20px;
   }
@@ -109,6 +109,7 @@ export const StyledList = styled.ul`
   background: var(--color-grey-3);
   padding: 2rem;
   gap: 1.5625rem;
+  margin-bottom: 2rem;
 
   li {
     display: flex;
@@ -131,5 +132,21 @@ export const StyledList = styled.ul`
   .status__tech {
     font-size: 0.75rem;
     color: var(--color-grey-1);
+  }
+`;
+
+export const StyledButtonPlus = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.375rem;
+  color: white;
+  background: var(--color-grey-2);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.25rem;
+
+  :hover {
+    background: var(--color-grey-3);
   }
 `;

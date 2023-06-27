@@ -1,17 +1,6 @@
 import styled from "styled-components";
 
-export const StyledModalOverlay = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.2);
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const StyledModalBox = styled.div`
+export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,7 +9,6 @@ export const StyledModalBox = styled.div`
   height: max-content;
   gap: 1rem;
   background: var(--color-grey-3);
-  gap: 20px;
 
   .div__title {
     display: flex;
@@ -45,6 +33,12 @@ export const StyledModalBox = styled.div`
     height: 100%;
     padding: 1rem;
     gap: 20px;
+  }
+
+  label {
+    font-style: normal;
+    font-size: 0.75rem;
+    font-weight: 400;
   }
 
   .form__select {
@@ -72,6 +66,11 @@ export const StyledModalBox = styled.div`
     }
   }
 
+  option {
+    font-weight: 400;
+    font-size: 1rem;
+  }
+
   .buttonX {
     color: var(--color-grey-1);
   }
@@ -81,17 +80,11 @@ export const StyledModalBox = styled.div`
     line-height: 1.5rem;
   }
 
-  .div__buttons {
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    gap: 0.625rem;
-
-    font-size: 1rem;
-  }
-  
-  .button__save {
-    font-size: 1rem;
+  span {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.7614rem;
+    line-height: 0rem;
+    color: var(--color-negative);
   }
 `;
