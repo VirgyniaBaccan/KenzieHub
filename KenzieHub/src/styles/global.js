@@ -3,8 +3,8 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
 
     :root {
-    --font-primary: 'Inter', sans-serif;
-	--color-primary: #ff577fff;
+		--font-primary: 'Inter', sans-serif;
+	--color-primary: #;
 	--color-primary-50: #ff427fff;
 	--color-primary-disable: #59323fff;
 	--color-grey-4: #121214ff;

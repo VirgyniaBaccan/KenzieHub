@@ -40,7 +40,6 @@ export const CreateTechForm = () => {
           placeholder="Status"
           {...register("status")}
         >
-          <span>{errors.status?.message}</span>
           <option>Iniciante</option>
           <option>Intermediário</option>
           <option>Avançado</option>

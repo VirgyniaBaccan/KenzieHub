@@ -29,4 +29,8 @@ export const StyledLink = styled(Link)`
   line-height: 1.75rem;
   text-align: center;
   color: var(--color-grey-0);
+
+  :hover {
+    background: var(--color-grey-2);
+  }
 `;

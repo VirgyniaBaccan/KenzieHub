@@ -11,7 +11,7 @@ export const StyledButton = styled.button`
 
   width: 100%;
   height: 3rem;
-  background: var(--color-primary);
+  background: var(--color-primary-50);
 
   border: 0.0761rem solid var(--color-primary);
   border-radius: 0.2538rem;
@@ -24,6 +24,6 @@ export const StyledButton = styled.button`
   color: var(--color-grey-0);
 
   :hover {
-    background: var(--color-primary-50);
+    background: var(--color-primary-disable);
   }
 `;

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { RoutesMain } from "./routes/RoutesMain";
 import { GlobalStyle } from "./styles/global";
 import { GlobalReset } from "./styles/reset";

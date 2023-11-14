@@ -110,6 +110,7 @@ export const StyledList = styled.ul`
   padding: 2rem;
   gap: 1.5625rem;
   margin-bottom: 2rem;
+  cursor: pointer;
 
   li {
     display: flex;

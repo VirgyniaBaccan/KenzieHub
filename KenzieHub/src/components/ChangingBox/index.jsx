@@ -34,13 +34,12 @@ export const ChangingBox = ({ children, updateCallback, deleteCallback }) => {
             className="form__select"
             placeholder="status"
             {...register("status")}
-            defaultValue={isChanging.status}
+            defaultValue={isChanging.status} name="status"
           >
             <option value={"Iniciante"}>Iniciante</option>
             <option value={"Intermediário"}>Intermediário</option>
             <option value={"Avançado"}>Avançado</option>
           </select>
-        </form>
         <div className="div__buttons">
           <StyledButton className="button__save" type="submit">
             Salvar alterações
@@ -49,6 +48,7 @@ export const ChangingBox = ({ children, updateCallback, deleteCallback }) => {
             Excluir
           </StyledLink>
         </div>
+        </form>
       </StyledModalBox>
     </StyledModalOverlay>
   );

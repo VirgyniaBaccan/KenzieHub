@@ -9,25 +9,25 @@ export const TechProvider = ({ children }) => {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isChanging, setIsChanging] = useState(null);
 
-  useEffect(() => {
-    const loadTechData = async () => {
-      const token = localStorage.getItem("@TOKEN");
-      try {
-        setIsLoading(true);
-        const { data } = await api.get("/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setTechList(data.techs);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    loadTechData();
-  }, []);
+    useEffect(() => {
+      const loadTechData = async () => {
+        const token = localStorage.getItem("@TOKEN");
+        try {
+          setIsLoading(true);
+          const { data } = await api.get("/profile", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setTechList(data.techs);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      loadTechData();
+    }, []);
 
   const createTech = async (formData) => {
     try {
