@@ -37,7 +37,6 @@ export const TechProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-
       setTechList((techList) => [...techList, data]);
     } catch (error) {
       console.log(error);

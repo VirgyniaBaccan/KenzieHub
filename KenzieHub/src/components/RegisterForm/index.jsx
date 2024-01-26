@@ -22,6 +22,7 @@ export const RegisterForm = () => {
   const { createUser } = useContext(UserContext);
 
   const submit = async (formData) => {
+    console.log(formData)
     await createUser(formData);
     reset();
   };
